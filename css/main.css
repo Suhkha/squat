@@ -1,0 +1,885 @@
+/* Main form wrapper */
+.seven-days__form-wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+}
+
+.overview .seven-days__form-wrap {
+	height: auto;
+}
+
+/* Title */
+.seven-days__title {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 40px;
+	width: 100%;
+}
+
+.seven-days__title h1 {
+	margin: 0;
+}
+
+/* Form */
+.seven-days__form {
+	position: relative;
+	text-align: left;
+	font-size: 2.5em;
+}
+
+.no-js .seven-days__form {
+	padding: 0 0 6em 0;
+}
+
+/* Views (fullscreen and overview)*/
+.seven-days__form-full {
+	top: 32%;
+	margin: 0 auto;
+	width: 70%;
+}
+
+.seven-days__form-full,
+.seven-days__message-error {
+	max-width: 960px;
+}
+
+.seven-days__form-overview {
+	padding: 2.5em 30% 6em;
+	width: 100%;
+	height: 100%;
+	background: #fffed8;
+	color: #3b3f45;
+	font-size: 1.2em;
+}
+
+.seven-days__form-overview .seven-days__fields::before {
+	display: block;
+	margin-bottom: 2.5em;
+	color: #3b3f45;
+	content: 'Review & Submit';
+	font-weight: 700;
+	font-size: 1.85em;
+}
+
+/* Switch view animation (we hide the current view, switch the view class and show it again) */
+.seven-days__form.seven-days__show {
+	-webkit-animation: animFadeIn 0.5s;
+	animation: animFadeIn 0.5s;
+}
+
+@-webkit-keyframes animFadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes animFadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.seven-days__form.seven-days__show .seven-days__fields {
+	-webkit-animation: animMove 0.5s;
+	animation: animMove 0.5s;
+}
+
+@-webkit-keyframes animMove {
+	from { top: 100px; }
+}
+
+@keyframes animMove {
+	from { top: 100px; }
+} /* we need to use top here because otherwise all our fixed elements will become absolute */
+
+/* Visibility control of elements */
+.seven-days__form-full .seven-days__fields > li,
+.seven-days__nav-dots, 
+.seven-days__progress,
+.seven-days__numbers,
+button.seven-days__continue,
+.seven-days__message-error,
+.seven-days__message-final {
+	visibility: hidden;
+}
+
+.no-js .seven-days__form-full .seven-days__fields > li {
+	visibility: visible;
+}
+
+.seven-days__show {
+	visibility: visible !important;
+}
+
+/* Some general styles */
+.seven-days__form-wrap button {
+	border: none;
+	background: none;
+}
+
+.seven-days__form-wrap button[disabled] {
+	opacity: 0.3;
+	pointer-events: none;
+}
+
+.seven-days__form-wrap input:focus,
+.seven-days__form-wrap button:focus {
+	outline: none;
+}
+
+/* Hide the submit button */
+.seven-days__form .seven-days__submit {
+	display: none;
+}
+
+/* Fields */
+.seven-days__fields {
+	position: relative;
+	margin: 0 auto;
+	padding: 0;
+	top: 0;
+	list-style: none;
+}
+
+.seven-days__form-overview ol {
+	max-width: ;
+}
+
+.seven-days__fields > li {
+	position: relative;
+	z-index: 1;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.seven-days__fields > li:hover {
+	z-index: 999;
+}
+
+.js .seven-days__form-full .seven-days__fields > li {
+	position: absolute;
+	width: 100%;
+}
+
+.seven-days__form-overview .seven-days__fields > li,
+.no-js .seven-days__form .seven-days__fields > li {
+	margin: 1em 0 2em;
+	padding: 0 0 2em 0;
+	border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+/* Labels & info */
+.seven-days__fields > li label {
+	position: relative;
+}
+
+.seven-days__fields > li label.seven-days__field-label {
+	display: inline-block;
+	padding: 0 5px 1em 0;
+	font-weight: 700;
+	pointer-events: none;
+}
+
+.seven-days__form-full .seven-days__fields > li label[data-info]::after {
+	position: relative;
+	display: inline-block;
+	margin-left: 10px;
+	width: 24px;
+	height: 24px;
+	border: 2px solid rgba(0,0,0,0.4);
+	color: rgba(0,0,0,0.4);
+	border-radius: 50%;
+	content: 'i';
+	vertical-align: top;
+	text-align: center;
+	font-weight: 700;
+	font-style: italic;
+	font-size: 14px;
+	font-family: Georgia, serif;
+	line-height: 20px;
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+.seven-days__form-full .seven-days__fields > li label[data-info]::before {
+    position: absolute;
+    bottom: 100%;
+   	left: 0;
+    padding: 0 0 10px;
+    min-width: 200px;
+	content: attr(data-info);
+	font-size: 0.4em;
+	color: #6a7b7e;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    -webkit-transform: translate3d(0,-5px,0);
+    transform: translate3d(0,-5px,0);
+    pointer-events: none;
+}
+
+.seven-days__form-full .seven-days__fields > li label[data-info]:hover::before {
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+}
+
+.seven-days__form-full .seven-days__fields > li label:hover ~ .seven-days__info,
+.seven-days__form-full .seven-days__fields > li .seven-days__info:hover {
+	opacity: 1;
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* Inputs */
+.seven-days__fields input {
+	display: block;
+	margin: 0;
+	padding: 0 0 0.15em;
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid rgba(0,0,0,0.2);
+	background-color: transparent;
+	color: #fffed8;
+	text-overflow: ellipsis;
+	font-weight: bold;
+	font-size: 1.5em;
+	border-radius: 0;
+}
+
+.seven-days__fields input:invalid {
+	box-shadow: none; /* removes red shadow in FF*/
+}
+
+.seven-days__form-overview .seven-days__fields input {
+	border-bottom-color: transparent;
+	color: rgba(0,0,0,0.5);
+}
+
+.seven-days__fields [required] {
+	background-image: url(../img/abacusstar.svg);
+	background-position: top right;
+	background-size: 18px;
+	background-repeat: no-repeat;
+}
+
+.seven-days__fields input:focus {
+	background-color: #3b3f45; /* Fixes chrome bug with placeholder */
+}
+
+.seven-days__form-overview .seven-days__fields input:focus {
+	background-color: #fffed8; /* Fixes chrome bug with placeholder */
+}
+
+.seven-days__form-overview .seven-days__fields input {
+	font-size: 1.2em;
+}
+
+.seven-days__fields .seven-days__radio-custom input[type="radio"] {
+	position: absolute;
+	display: block;
+	margin: 30px auto 20px;
+	margin: 0 auto 20px;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.seven-days__fields > li .seven-days__radio-custom span {
+	float: left;
+	position: relative;
+	margin-right: 3%;
+	padding: 10px;
+	max-width: 200px;
+	width: 30%;
+	text-align: center;
+	font-weight: 700;
+	font-size: 50%;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.seven-days__fields > li .seven-days__radio-custom span label {
+	color: rgba(0,0,0,0.4);
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+.seven-days__form-overview .seven-days__fields > li .seven-days__radio-custom span {
+	max-width: 140px;
+}
+
+.seven-days__form-overview .seven-days__fields > li .seven-days__radio-custom span {
+	font-size: 75%;
+}
+
+.seven-days__fields > li .seven-days__radio-custom label {
+	display: block;
+	padding-top: 100%;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.seven-days__fields .seven-days__radio-custom label::after {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	background-position: 50% 0%;
+	background-size: 85%;
+	background-repeat: no-repeat;
+	content: '';
+	opacity: 0.5;
+	-webkit-transition: opacity 0.2s;
+	transition: opacity 0.2s;
+	-webkit-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+
+.seven-days__fields .seven-days__radio-custom label.radio-mobile::after {
+	background-image: url(../img/mobile.svg);
+}
+
+.seven-days__fields .seven-days__radio-custom label.radio-social::after {
+	background-image: url(../img/social.svg);
+}
+
+.seven-days__fields .seven-days__radio-custom label.radio-conversion::after {
+	background-image: url(../img/conversion.svg);
+}
+
+.seven-days__fields .seven-days__radio-custom label:hover::after,
+.seven-days__fields input[type="radio"]:focus + label::after,
+.seven-days__fields input[type="radio"]:checked + label::after {
+	opacity: 1;
+}
+
+.seven-days__fields .seven-days__radio-custom input[type="radio"]:checked + label {
+	color: #fffed8;
+}
+
+.seven-days__form-overview .seven-days__fields .seven-days__radio-custom input[type="radio"]:checked + label {
+	color: rgba(0,0,0,0.8);
+}
+
+.seven-days__fields textarea {
+	padding: 0.25em;
+	width: 100%;
+	height: 200px;
+	border: 2px solid rgba(0,0,0,0.2);
+	background-color: transparent;
+	color: #fffed8;
+	font-weight: 700;
+	font-size: 0.85em;
+	resize: none;
+}
+
+.seven-days__form-overview .seven-days__fields textarea {
+	height: 100px;
+	color: rgba(0,0,0,0.5);
+}
+
+.seven-days__fields textarea:focus {
+	outline: none;
+}
+
+.seven-days__form-overview .seven-days__fields textarea {
+	padding: 0;
+	border-color: transparent;
+}
+
+.seven-days__form-overview .seven-days__fields textarea:focus {
+	background: #fffed8;
+}
+
+.seven-days__form div.cs-select.cs-skin-boxes {
+	display: block;
+}
+
+.seven-days__form-overview .cs-skin-boxes > span {
+	border-radius: 5px;
+	width: 90px;
+	height: 70px;
+	font-size: 0.8em;
+}
+
+.seven-days__form-overview .cs-skin-boxes > span::before {
+	padding-top: 50px;
+	box-shadow: 0 20px 0 #292c30, inset 0 -5px #292c30;
+}
+
+.seven-days__fields input.seven-days__mark {
+	padding-left: 1em;
+	background-image: url(../img/dollar.svg);
+	background-position: 0% 0.15em;
+	background-size: auto 75%;
+	background-repeat: no-repeat;
+}
+
+.seven-days__fields input.seven-days__mark[required] {
+	background-image: url(../img/dollar.svg), url(../img/abacusstar.svg);
+	background-position: 0% 0.15em, top right;
+	background-size: auto 75%, 18px;
+	background-repeat: no-repeat;
+}
+
+/* placeholder */
+.seven-days__fields input::-webkit-input-placeholder,
+.seven-days__fields textarea::-webkit-input-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+.seven-days__fields input:-moz-placeholder,
+.seven-days__fields textarea:-moz-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+.seven-days__fields input::-moz-placeholder,
+.seven-days__fields textarea::-moz-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+.seven-days__fields input:-ms-input-placeholder,
+.seven-days__fields textarea:-ms-input-placeholder {
+	color: rgba(0,0,0,0.1);
+}
+
+/* Hide placeholder when focused in Webkit browsers */
+.seven-days__fields input:focus::-webkit-input-placeholder {
+	color: transparent;
+}
+
+/* Dot navigation */
+.seven-days__nav-dots {
+	position: absolute;
+	top: 50%;
+	right: 60px;
+	left: auto;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.seven-days__nav-dots button {
+	position: relative;
+	display: block;
+	padding: 0;
+	margin: 16px 0;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: transparent;
+	-webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.seven-days__nav-dots button::before,
+.seven-days__nav-dots button::after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: rgba(0,0,0,0.5);
+	content: '';
+	text-indent: 0;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.seven-days__nav-dots button::after {
+	background-color: rgba(0,0,0,0.4);
+	-webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+	transform: perspective(1000px) rotate3d(0,1,0,180deg);
+}
+
+.seven-days__nav-dots button.seven-days__dot-current {
+	-webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+	transform: perspective(1000px) rotate3d(0,1,0,180deg);
+}
+
+.seven-days__nav-dots button:hover::before,
+.seven-days__nav-dots button.seven-days__dot-current::before {
+	background: #fffed8;
+}
+
+/* Progress bar */
+.seven-days__progress {
+	position: absolute;
+	top: 0;
+	width: 0%;
+	height: 0.5em;
+	background: #fffed8;
+	-webkit-transition: width 0.3s ease-in-out;
+	transition: width 0.3s ease-in-out;
+}
+
+/* Number indicator */
+.seven-days__numbers {
+	position: absolute;
+	top: 0;
+	right: 0;
+	overflow: hidden;
+	color: rgba(0,0,0,0.4);
+	margin: 40px;
+	width: 2em;
+	font-weight: 700;
+	font-size: 2em;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	cursor: default;
+}
+
+.seven-days__numbers:after {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	content: '/';
+	font-weight: 300;
+	opacity: 0.4;
+	left: 0;
+}
+
+.seven-days__numbers span {
+	float: right;
+	width: 40%;
+	text-align: center;
+}
+
+.seven-days__numbers .seven-days__number-current {
+	float: left;
+}
+
+.seven-days__numbers .seven-days__number-new {
+	position: absolute;
+	left: 0;
+	-webkit-transform: translateY(100%);
+	transform: translateY(100%);
+}
+
+/* Animations for numbers */
+/* Show next number */
+.seven-days__numbers.seven-days__show-next .seven-days__number-new {
+	-webkit-animation: animMoveUpFromDown 0.4s both;
+	animation: animMoveUpFromDown 0.4s both;
+}
+
+@-webkit-keyframes animMoveUpFromDown {
+	from { -webkit-transform: translateY(100%); }
+	to { -webkit-transform: translateY(0); }
+}
+
+@keyframes animMoveUpFromDown {
+	from { -webkit-transform: translateY(100%); transform: translateY(100%); }
+	to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+.seven-days__numbers.seven-days__show-next .seven-days__number-current {
+	-webkit-animation: animMoveUp 0.4s both;
+	animation: animMoveUp 0.4s both;
+}
+
+@-webkit-keyframes animMoveUp {
+	to { -webkit-transform: translateY(-100%); }
+}
+
+@keyframes animMoveUp {
+	to { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+
+/* Show previous number */
+.seven-days__numbers.seven-days__show-prev .seven-days__number-new {
+	-webkit-animation: animMoveDownFromUp 0.4s both;
+	animation: animMoveDownFromUp 0.4s both;
+}
+
+@-webkit-keyframes animMoveDownFromUp {
+	from { -webkit-transform: translateY(-100%); }
+	to { -webkit-transform: translateY(0); }
+}
+
+@keyframes animMoveDownFromUp {
+	from { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+	to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+.seven-days__numbers.seven-days__show-prev .seven-days__number-current {
+	-webkit-animation: animMoveDown 0.4s both;
+	animation: animMoveDown 0.4s both;
+}
+
+@-webkit-keyframes animMoveDown {
+	to { -webkit-transform: translateY(100%); }
+}
+
+@keyframes animMoveDown {
+	to { -webkit-transform: translateY(100%); transform: translateY(100%); }
+}
+
+/* Continue button and submit button */
+button.seven-days__submit,
+button.seven-days__continue {
+	padding: 0.6em 1.5em;
+	border: 3px solid #232529;
+	border-radius: 40px;
+	font-weight: 700;
+	color: rgba(0,0,0,0.4);
+}
+
+.seven-days__form-overview .seven-days__submit,
+.no-js .seven-days__form .seven-days__submit  {
+	display: block;
+	float: right;
+}
+
+.seven-days__form-overview .seven-days__submit {
+	border-color: #232529;
+	color: #232529;
+}
+
+button.seven-days__continue {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin: 0 40px 60px 0;
+	font-size: 1.25em;
+}
+
+button.seven-days__submit:hover,
+button.seven-days__submit:focus,
+button.seven-days__continue:hover {
+	background: #232529;
+	color: #fff;
+}
+
+.seven-days__continue::after {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	line-height: 3;
+	text-align: center;
+	background: transparent;
+	color: rgba(0,0,0,0.3);
+	content: 'or press ENTER';
+	font-size: 0.65em;
+	pointer-events: none;
+}
+
+/* Error message */
+.seven-days__message-error {
+	position: absolute;
+	bottom: 75%;
+	left: 50%;
+	z-index: 800;
+	max-width: 960px;
+	width: 70%;
+	color: #eb7e7f;
+	font-weight: 700;
+	font-size: 1em;
+	opacity: 0;
+	-webkit-transform: translate3d(-50%,-5px,0);
+	transform: translate3d(-50%,-5px,0);
+}
+
+.seven-days__message-error.seven-days__show {
+	opacity: 1;
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+	-webkit-transform: translate3d(-50%,0,0);
+	transform: translate3d(-50%,0,0);
+}
+
+/* Animation classes & animations */
+.seven-days__form li.seven-days__current {
+	visibility: visible;
+}
+
+.seven-days__form li.seven-days__hide,
+.seven-days__form li.seven-days__show {
+	pointer-events: none;
+}
+
+/* Hide current li when navigating to next question */
+.seven-days__form .seven-days__display-next .seven-days__hide {
+	visibility: visible;
+}
+
+.seven-days__form .seven-days__display-next .seven-days__hide .seven-days__anim-lower,
+.seven-days__form .seven-days__display-next .seven-days__hide .seven-days__anim-upper {
+	-webkit-animation: animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+	animation: animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+.seven-days__form .seven-days__display-next .seven-days__hide .seven-days__anim-lower {
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
+}
+
+@-webkit-keyframes animHideNext {
+	to { opacity: 0; -webkit-transform: translate3d(0,-500px,0); }
+}
+
+@keyframes animHideNext {
+	to { opacity: 0; -webkit-transform: translate3d(0,-500px,0); transform: translate3d(0,-500px,0); }
+}
+
+/* Show new li when navigating to next question */
+.seven-days__form .seven-days__display-next .seven-days__show .seven-days__anim-lower,
+.seven-days__form .seven-days__display-next .seven-days__show .seven-days__anim-upper {
+	-webkit-animation: animShowNext 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+	animation: animShowNext 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+}
+
+.seven-days__form .seven-days__display-next .seven-days__show .seven-days__anim-lower {
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+
+@-webkit-keyframes animShowNext {
+	from { opacity: 0; -webkit-transform: translate3d(0,500px,0); }
+}
+
+@keyframes animShowNext {
+	from { opacity: 0; -webkit-transform: translate3d(0,500px,0); transform: translate3d(0,500px,0); }
+}
+
+/* Hide current li when navigating to previous question */
+.seven-days__form .seven-days__display-prev .seven-days__hide {
+	visibility: visible;
+}
+
+.seven-days__form .seven-days__display-prev .seven-days__hide .seven-days__anim-lower,
+.seven-days__form .seven-days__display-prev .seven-days__hide .seven-days__anim-upper {
+	-webkit-animation: animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+	animation: animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+.seven-days__form .seven-days__display-prev .seven-days__hide .seven-days__anim-upper {
+	-webkit-animation-delay: 0.1s;
+	animation-delay: 0.1s;
+}
+
+@-webkit-keyframes animHidePrev {
+	to { opacity: 0; -webkit-transform: translate3d(0,500px,0); }
+}
+
+@keyframes animHidePrev {
+	to { opacity: 0; -webkit-transform: translate3d(0,500px,0); transform: translate3d(0,500px,0); }
+}
+
+/* Show new li when navigating to previous question */
+.seven-days__form .seven-days__display-prev .seven-days__show .seven-days__anim-lower,
+.seven-days__form .seven-days__display-prev .seven-days__show .seven-days__anim-upper {
+	-webkit-animation: animShowPrev 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+	animation: animShowPrev 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+}
+
+.seven-days__form .seven-days__display-prev .seven-days__show .seven-days__anim-upper {
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+
+@-webkit-keyframes animShowPrev {
+	from { opacity: 0; -webkit-transform: translate3d(0,-500px,0); }
+}
+
+@keyframes animShowPrev {
+	from { opacity: 0; -webkit-transform: translate3d(0,-500px,0); transform: translate3d(0,-500px,0); }
+}
+
+/* Remove IE clear cross */
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+/* Adjust form for smaller screens */
+@media screen and (max-width: 52.5em) {
+	body {
+		min-height: 500px;
+	}
+
+	.seven-days__form-wrap {
+		font-size: 70%;
+	}
+
+	.seven-days__form {
+		top: 6em;
+		right: 2em;
+		left: 0;
+		padding: 0 3.75em 0 1em;
+		width: auto;
+		font-size: 2em;
+	}
+
+	.seven-days__form.seven-days__form-overview {
+		top: 0;
+		right: 0;
+		padding: 1.5em 1em 8em 1em;
+		font-size: 1.5em;
+	}
+
+	.seven-days__title {
+		padding: 20px;
+	}
+
+	.seven-days__numbers {
+		margin: 20px;
+	}
+
+	.seven-days__nav-dots {
+		right: 25px;
+	}
+
+	button.seven-days__continue {
+		right: 20px;
+		bottom: 20px;
+		margin: 0;
+		padding: 50px 0 0 50px;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		font-size: 2em;
+	}
+
+	button.seven-days__continue::before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: '\27A1';
+		text-align: center;
+		font-size: 1em;
+		line-height: 50px;
+	}
+
+	.seven-days__continue::after {
+		content: '';
+	}
+
+	button.seven-days__submit {
+		width: 100%;
+		font-size: 1.25em;
+	}
+
+	.seven-days__message-error {
+		bottom: 1.75em;
+		left: 0;
+		padding: 0 90px 0 2em;
+		width: 100%;
+		font-size: 1.5em;
+		-webkit-transform: translate3d(0,-5px,0);
+		transform: translate3d(0,-5px,0);
+	}
+
+	.seven-days__message-error.seven-days__show {
+		-webkit-transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);
+	}
+}
